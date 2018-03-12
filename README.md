@@ -13,6 +13,8 @@ Android Bootcamp - Android Intermediate
   
   - Local Database (Sqlite)
   
+  - Room Persistence Library (Room)
+  
   - Remote Connection (RESTFul services)
    
 - Android M 
