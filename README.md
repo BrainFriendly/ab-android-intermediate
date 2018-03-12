@@ -1,33 +1,11 @@
 # ab-android-intermediate
 Android Bootcamp - Android Intermediate
 
-## Temario
+## Lesson 1
 
 - Navigation componentes
 
   - Navigation Drawer, Tabs, ViewPager
-
-- Storage Options
-
-  - Shared preferences
-  
-  - Local Database (Sqlite)
-  
-  - Room Persistence Library (Room)
-  
-  - Remote Connection (RESTFul services)
-   
-- Android M 
-
-  - Runtime Permissions
-
-- Google Maps API
-
-  - Geolocation
-  
-  - Google Maps API
-  
-- Android Design & Material Design
 
 
 ## Referencias
