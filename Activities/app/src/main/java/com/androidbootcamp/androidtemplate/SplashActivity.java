@@ -1,14 +1,17 @@
 package com.androidbootcamp.androidtemplate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.androidbootcamp.androidtemplate.model.MyEntity;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private final int SPLASH_TIME=3000;
+    private final int SPLASH_TIME=3000;//1000 - 1s
     private Timer timer;
 
     @Override
@@ -19,15 +22,14 @@ public class SplashActivity extends AppCompatActivity {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                gotoLogIn();
+                goToLogIn();
             }
         };
 
         timer.schedule(task, SPLASH_TIME);
-
     }
 
-    private void gotoLogIn(){
+    private void goToLogIn(){
 
         /*
         //1. En que pantalla estoy
@@ -46,5 +48,21 @@ public class SplashActivity extends AppCompatActivity {
 
         startActivity(intent);
         finish();*/
+
+        Bundle bundle= new Bundle();
+        bundle.putString("USERID","10");
+        bundle.putString("USERNAME","Eduardo");
+        bundle.putBoolean("STATE",false);
+
+        bundle.putSerializable("OBJSR",
+                new MyEntity(100,"Eduardo José"));
+
+
+        Intent intent= new Intent(this,
+                LogInActivity.class);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+        finish();
     }
 }

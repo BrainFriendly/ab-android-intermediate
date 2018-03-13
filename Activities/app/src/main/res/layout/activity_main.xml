@@ -17,6 +17,13 @@
             android:layout_margin="10dp"
             android:adjustViewBounds="true"
             android:src="@mipmap/skype_logo500"/>
-    </FrameLayout>
 
+
+    </FrameLayout>
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="LogOut" />
 </RelativeLayout>

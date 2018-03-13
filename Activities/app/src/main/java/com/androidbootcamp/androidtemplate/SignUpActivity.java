@@ -42,6 +42,9 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void gotoLogIn() {
+        finish();
+        //Intent intent= new Intent(this,LogInActivity.class);
+        //startActivity(intent);
         //Intent intent= new Intent(this,LogInActivity.class);
         //startActivity(intent);
         //finish();
@@ -50,6 +53,11 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        //gotoLogIn();
     }
+
+    /*@Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        //gotoLogIn();
+    }*/
 }

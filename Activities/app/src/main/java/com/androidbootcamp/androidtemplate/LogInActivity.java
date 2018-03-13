@@ -1,5 +1,6 @@
 package com.androidbootcamp.androidtemplate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,26 +11,29 @@ public class LogInActivity extends BaseActivity {
     private View btnNext,llaySignUp;
 
     private String userId,userName;
+    private boolean state;
     private MyEntity myEntity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        //extras();
+        extras();
         ui();
 
-        //showMessage("username "+userName);
-        //showMessage("entity "+myEntity.toString());
+        //showMessage("userId "+userId);
+        showMessage("entity "+myEntity.toString());
     }
 
     private void extras(){
-        /*if(getIntent()!=null && getIntent().getExtras()!=null){
+        if(getIntent()!=null && getIntent().getExtras()!=null){
             Bundle bundle= getIntent().getExtras();
+
             userId= bundle.getString("USERID",null);
             userName= bundle.getString("USERNAME",null);
+            state= bundle.getBoolean("STATE");
             myEntity= (MyEntity) bundle.getSerializable("OBJSR");
-        }*/
+        }
     }
     private void ui() {
         btnNext= findViewById(R.id.btnNext);
@@ -50,12 +54,23 @@ public class LogInActivity extends BaseActivity {
     }
 
     private void gotoMain() {
+
+        Intent intent= new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+
         /*Intent intent= new Intent(this,MainActivity.class);
         startActivity(intent);
         finish();*/
     }
 
     private void gotoSignUp() {
+
+        Intent intent= new Intent(this,SignUpActivity.class);
+        startActivity(intent);
+
+        //next(SignUpActivity.class,null,false);
+
         //Intent intent= new Intent(this,SignUpActivity.class);
         //startActivity(intent);
         //next(SignUpActivity.class,null,false);
