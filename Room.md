@@ -71,7 +71,9 @@ AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,
 
 ## Como agregarlo al proyecto?
 Agregar las siguientes lineas al build.gradle de la aplicación
-```
+```groovy
+dependencies {
     implementation "android.arch.persistence.room:runtime:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+}
 ```
