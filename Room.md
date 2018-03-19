@@ -14,7 +14,7 @@ Para adquirir una instancia de la base de datos se debe llamar a los métodos Ro
  - Entidad: representa una tabla dentro de la base de datos.
  - DAO: contiene los métodos utilizados para acceder a la base de datos.
 
-![Room architecture diagram](https://github.com/BrainFriendly/ab-android-intermediate/tree/L2-Persistence/images)
+![Room architecture diagram](https://github.com/BrainFriendly/ab-android-intermediate/blob/L2-Persistence/images/room_architecture.png)
 
 User.java
 ```java
