@@ -68,3 +68,10 @@ Luego de crear los archivos previos, la forma de obtener una instancia de la BD 
 ```java
 AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "database-name").build();
 ```
+
+## Como agregarlo al proyecto?
+Agregar las siguientes lineas al build.gradle de la aplicación
+```
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+```
