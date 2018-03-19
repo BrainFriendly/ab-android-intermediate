@@ -77,3 +77,6 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 }
 ```
+
+## Bibliografía
+https://developer.android.com/training/data-storage/room/index.html
