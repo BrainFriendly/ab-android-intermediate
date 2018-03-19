@@ -1,0 +1,37 @@
+[
+  {
+    "marca": "Toyota",
+    "modelo": "Yaris",
+    "Año": 2012,
+    "imagen": "https://d1ek71enupal89.cloudfront.net/images/blocks_png/TOYOTA/YARIS/5DR/17ToyYar5drRedFR1_800.jpg",
+    "Precio": 16000
+  },
+  {
+    "marca": "Mitsubishi",
+    "modelo": "Lancer",
+    "Año": 2010,
+    "imagen": "https://d1ek71enupal89.cloudfront.net/images/blocks_png/TOYOTA/YARIS/5DR/17ToyYar5drRedFR1_800.jpg",
+    "Precio": 16000
+  },
+  {
+    "marca": "Citroen",
+    "modelo": "Ds3",
+    "Año": 2014,
+    "imagen": "https://d1ek71enupal89.cloudfront.net/images/blocks_png/TOYOTA/YARIS/5DR/17ToyYar5drRedFR1_800.jpg",
+    "Precio": 16000
+  },
+  {
+    "marca": "Volvo",
+    "modelo": "S80",
+    "Año": 2010,
+    "imagen": "https://d1ek71enupal89.cloudfront.net/images/blocks_png/TOYOTA/YARIS/5DR/17ToyYar5drRedFR1_800.jpg",
+    "Precio": 16000
+  },
+  {
+    "marca": "Nissan",
+    "modelo": "Sentra",
+    "Año": 2015,
+    "imagen": "https://d1ek71enupal89.cloudfront.net/images/blocks_png/TOYOTA/YARIS/5DR/17ToyYar5drRedFR1_800.jpg",
+    "Precio": 16000
+  }
+]
