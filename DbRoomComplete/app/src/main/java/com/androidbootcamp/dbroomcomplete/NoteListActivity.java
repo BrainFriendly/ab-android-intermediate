@@ -113,12 +113,7 @@ public class NoteListActivity extends AppCompatActivity {
         lstNotes= (ListView)(findViewById(R.id.lstNotes));
         btnAddNote= (Button)(findViewById(R.id.btnAddNote));
 
-        //user Info
-        /* username = PreferencesHelper.getUserSession(this);
-        if(username!=null)
-        {
-            tviUser.setText("Bienvenido "+ StringUtils.firstCapitalize(username));
-        }*/
+
 
         //events
         btnAddNote.setOnClickListener(new View.OnClickListener() {
@@ -136,12 +131,7 @@ public class NoteListActivity extends AppCompatActivity {
             }
         });
 
-        tviLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logout();
-            }
-        });
+
     }
 
     private void gotoNote(int action, NoteEntity noteEntity) {
@@ -161,11 +151,6 @@ public class NoteListActivity extends AppCompatActivity {
         }
     }
 
-    private void logout() {
-        /*PreferencesHelper.signOut(this);
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();*/
-    }
 
     @Override
     protected void onResume() {
