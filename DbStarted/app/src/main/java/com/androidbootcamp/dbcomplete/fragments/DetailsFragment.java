@@ -103,15 +103,15 @@ public class DetailsFragment extends Fragment {
         btnDeleteNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mListener.deleteNote(noteEntity);
+                mListener.deleteNote(noteEntity);
             }
         });
         btnEditNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(validateForm()){
-                    //editNote();
-                    //closeActivity();
+                    editNote();
+                    closeActivity();
                 }
             }
         });
@@ -119,9 +119,9 @@ public class DetailsFragment extends Fragment {
 
     private void editNote(){
         //base de datos
-        /*int id = noteEntity.getId();
+        int id = noteEntity.getId();
         NoteEntity editNoteEntity= new NoteEntity(id,editNoteName,editNoteDesc,null);
-        mListener.editNote(editNoteEntity);*/
+        mListener.editNote(editNoteEntity);
     }
 
     private boolean validateForm(){

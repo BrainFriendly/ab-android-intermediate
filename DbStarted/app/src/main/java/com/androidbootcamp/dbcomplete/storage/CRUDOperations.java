@@ -1,5 +1,6 @@
 package com.androidbootcamp.dbcomplete.storage;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -21,14 +22,14 @@ public class CRUDOperations {
 
 	public void addNote(NoteEntity noteEntity)
 	{
-		 /*SQLiteDatabase db = helper.getWritableDatabase(); //modo escritura
+		 SQLiteDatabase db = helper.getWritableDatabase(); //modo escritura
 		 ContentValues values = new ContentValues();
 		 values.put(MyDatabase.KEY_NAME, noteEntity.getName());
 		 values.put(MyDatabase.KEY_DESC, noteEntity.getDescription());
 		 values.put(MyDatabase.KEY_PATH, noteEntity.getPath());
 		 
 		 db.insert(MyDatabase.TABLE_NOTES, null, values);
-		 db.close();*/
+		 db.close();
 	}
 	
 	public NoteEntity getNote(int id)
@@ -56,7 +57,7 @@ public class CRUDOperations {
 	
 	public List<NoteEntity> getAllNotes()
 	{
-		/*List<NoteEntity> lst =new ArrayList<NoteEntity>();
+		List<NoteEntity> lst =new ArrayList<NoteEntity>();
 		String sql= "SELECT  * FROM " + MyDatabase.TABLE_NOTES;
 		SQLiteDatabase db = helper.getReadableDatabase();
 		Cursor cursor = db.rawQuery(sql, null);
@@ -74,8 +75,8 @@ public class CRUDOperations {
 			}while(cursor.moveToNext());
 		}
 		db.close();
-		return lst;*/
-		return new ArrayList<>();
+		return lst;
+		//return new ArrayList<>();
 	}
 	
 	public int getNoteCount()
@@ -92,7 +93,7 @@ public class CRUDOperations {
 	//--------------------------------------------
 	public int updateNote(NoteEntity noteEntity)
 	{
-		/*SQLiteDatabase db = helper.getWritableDatabase();
+		SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(MyDatabase.KEY_NAME, noteEntity.getName());
 		values.put(MyDatabase.KEY_DESC, noteEntity.getDescription());
@@ -104,20 +105,18 @@ public class CRUDOperations {
 				new String[]{String.valueOf(noteEntity.getId())});
 		db.close();
 
-		return row;*/
-		return 0;
+		return row;
 	}
 
 	//--------------------------------------------
 	public int deleteNote(NoteEntity noteEntity)
 	{
-		 /*SQLiteDatabase db = helper.getWritableDatabase();
+		 SQLiteDatabase db = helper.getWritableDatabase();
 		 int row= db.delete(MyDatabase.TABLE_NOTES,
 				 MyDatabase.KEY_ID+"=?", 
 				 new String[]{String.valueOf(noteEntity.getId())});
 		 db.close();
-		return row;*/
-		 return 0;
+		return row;
 	}
 
 	public long getNoteCountWithStatement(){

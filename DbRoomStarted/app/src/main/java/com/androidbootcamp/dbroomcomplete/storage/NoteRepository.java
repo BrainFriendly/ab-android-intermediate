@@ -40,12 +40,12 @@ public class NoteRepository {
 
             }
         }).execute();*/
-        //new PopulateAsyncTask(noteDao, populateCallback).execute();
+        new PopulateAsyncTask(noteDao, populateCallback).execute();
     }
 
     public void add(NoteEntity noteEntity){
         //noteDao.insert(noteEntity);
-        //new InsertAsyncTask(noteDao).execute(noteEntity);
+        new InsertAsyncTask(noteDao).execute(noteEntity);
     }
 
     /**
@@ -54,19 +54,18 @@ public class NoteRepository {
      */
     public void addNotes(NoteEntity... noteList){
         //noteDao.insertAll(noteList);
-        //new InsertEntitiesAsyncTask(noteDao).execute(noteList);
+        new InsertEntitiesAsyncTask(noteDao).execute(noteList);
     }
 
     public void update(NoteEntity noteEntity){
         //noteDao.update(noteEntity);
-        //new UpdateAsyncTask(noteDao).execute(noteEntity);
+        new UpdateAsyncTask(noteDao).execute(noteEntity);
     }
 
     public void delete(NoteEntity noteEntity){
         //noteDao.delete(noteEntity);
-        //new DeleteAsyncTask(noteDao).execute(noteEntity);
+        new DeleteAsyncTask(noteDao).execute(noteEntity);
     }
-
 
     //Asynctask ------
 

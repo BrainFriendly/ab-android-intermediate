@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidbootcamp.dbcomplete.model.NoteEntity;
 import com.androidbootcamp.dbcomplete.storage.CRUDOperations;
@@ -78,6 +79,9 @@ public class NoteListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 NoteEntity noteEntity = (NoteEntity) adapterView.getAdapter().getItem(i);
+
+                Toast.makeText(NoteListActivity.this, "note "+noteEntity,
+                        Toast.LENGTH_LONG).show();
                 gotoNote(ACTION_DETAIL, noteEntity);
             }
         });
@@ -101,12 +105,11 @@ public class NoteListActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
         Log.v(TAG, "MainActivity onResumen - 2");
-        //loadData();
+        loadData();
     }
 
     @Override

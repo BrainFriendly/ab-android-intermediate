@@ -100,7 +100,7 @@ public class AddNoteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(validateForm()){
-                    //addNote();
+                    addNote();
                     closeActivity();
                 }
             }
@@ -150,8 +150,9 @@ public class AddNoteFragment extends Fragment {
 
     private void addNote() {
         //bd
-        NoteEntity noteEntity= new NoteEntity(name,desc,null);
-        //mListener.getNoteRepository().add(noteEntity);
+        NoteEntity noteEntity=
+                new NoteEntity(name,desc,null);
+        mListener.getNoteRepository().add(noteEntity);
     }
 
     /*private void bdCallback(){

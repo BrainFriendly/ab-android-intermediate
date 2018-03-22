@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.androidbootcamp.dbcomplete.R;
 import com.androidbootcamp.dbcomplete.fragments.listener.OnNoteListener;
+import com.androidbootcamp.dbcomplete.model.NoteEntity;
 
 
 public class AddNoteFragment extends Fragment {
@@ -114,8 +115,8 @@ public class AddNoteFragment extends Fragment {
 
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                     if(validateForm()){
-                        //addNote();
-                        //closeActivity();
+                        addNote();
+                        closeActivity();
                     }
                 }
                 return false;
@@ -149,8 +150,8 @@ public class AddNoteFragment extends Fragment {
 
     private void addNote() {
         //bd
-        //NoteEntity noteEntity= new NoteEntity(name,desc,null);
-        //mListener.getCrudOperations().addNote(noteEntity);
+        NoteEntity noteEntity= new NoteEntity(name,desc,null);
+        mListener.getCrudOperations().addNote(noteEntity);
         //mListener.getCrudOperations().addNote(noteEntity, bdCallback);
     }
 

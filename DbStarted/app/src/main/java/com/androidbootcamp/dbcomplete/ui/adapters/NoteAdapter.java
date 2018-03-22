@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class NoteAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
     private List<NoteEntity> lsNoteEntities;
 
     public NoteAdapter(Context context, List<NoteEntity> lsNoteEntities) {

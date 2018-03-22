@@ -10,6 +10,7 @@ import com.androidbootcamp.dbcomplete.fragments.listener.OnNoteListener;
 import com.androidbootcamp.dbcomplete.model.NoteEntity;
 import com.androidbootcamp.dbcomplete.storage.CRUDOperations;
 import com.androidbootcamp.dbcomplete.storage.MyDatabase;
+import com.androidbootcamp.dbcomplete.ui.dialogs.MyDialogFragment;
 import com.androidbootcamp.dbcomplete.ui.dialogs.MyDialogListener;
 
 
@@ -85,7 +86,7 @@ public class NoteActivity extends BaseActivity implements OnNoteListener, MyDial
 
     @Override
     public void deleteNote(NoteEntity noteEntity) {
-        /*
+
         currentNote= noteEntity;
         MyDialogFragment myDialogFragment =new MyDialogFragment();
         Bundle bundle= new Bundle();
@@ -93,7 +94,7 @@ public class NoteActivity extends BaseActivity implements OnNoteListener, MyDial
         bundle.putInt("TYPE",100);
 
         myDialogFragment.setArguments(bundle);
-        myDialogFragment.show(getSupportFragmentManager(), "dialog");*/
+        myDialogFragment.show(getSupportFragmentManager(), "dialog");
     }
 
     @Override
@@ -105,14 +106,15 @@ public class NoteActivity extends BaseActivity implements OnNoteListener, MyDial
     public void onPositiveListener(Object object, int type) {
         Log.v("CONSOLE", "dialog positive");
         if(currentNote!=null) {
-            /*crudOperations.deleteNote(currentNote);
+            crudOperations.deleteNote(currentNote);
             currentNote=null;
-            finish();*/
+            finish();
         }
     }
 
     @Override
     public void onNegativeListener(Object object, int type) {
         Log.v(TAG, "dialog negative");
+        currentNote=null;
     }
 }
