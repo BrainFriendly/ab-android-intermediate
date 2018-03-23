@@ -1,7 +1,9 @@
-package com.androidbootcamp.spexercises;
+package com.androidbootcamp.spexercises.three;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.androidbootcamp.spexercises.R;
 
 public class SharedPrefIIIActivity extends AppCompatActivity {
 

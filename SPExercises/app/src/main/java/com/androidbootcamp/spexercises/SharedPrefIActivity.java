@@ -35,7 +35,6 @@ public class SharedPrefIActivity extends AppCompatActivity implements View.OnCli
         button5.setOnClickListener(this);
         button6.setOnClickListener(this);
 
-
     }
 
     @Override
