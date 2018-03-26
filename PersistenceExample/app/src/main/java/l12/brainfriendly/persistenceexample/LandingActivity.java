@@ -2,12 +2,14 @@ package l12.brainfriendly.persistenceexample;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -32,6 +34,23 @@ public class LandingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
 
+        SharedPreferences sp = getSharedPreferences("persistence.txt", Context.MODE_PRIVATE);
+        if (!sp.getBoolean("inicializado", false)) {
+            List<Auto> listaAutos = leerArchivoDeAssets();
+            for (Auto auto : listaAutos) {
+                insertarAuto(auto);
+            }
+            sp.edit().putBoolean("inicializado", true).apply();
+        }
+
+
+        RecyclerView autosRecyclerView = findViewById(R.id.autosRecyclerView);
+        autosRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        autosRecyclerView.setAdapter(new AutosRecyclerAdapter(leerDeBaseDatos()));
+
+    }
+
+    private List<Auto> leerDeBaseDatos() {
         MyDataBaseHelper myDataBaseHelper = MyDataBaseHelper.getInstance(this);
         SQLiteDatabase database = myDataBaseHelper.getReadableDatabase();
         Cursor cursor = database.query(AutoTable.TABLE_NAME, null, null, null, null, null, null);
@@ -40,32 +59,16 @@ public class LandingActivity extends AppCompatActivity {
             do {
                 Auto auto = new Auto();
                 auto.setMarca(cursor.getString(cursor.getColumnIndex(AutoTable.MARCA)));
+                auto.setModelo(cursor.getString(cursor.getColumnIndex(AutoTable.MODELO)));
                 auto.setAnho(cursor.getInt(cursor.getColumnIndex(AutoTable.ANHO)));
+                auto.setImagen(cursor.getString(cursor.getColumnIndex(AutoTable.IMAGEN)));
                 autos.add(auto);
             } while (cursor.moveToNext());
         }
-
-        for (int i = 0; i < autos.size(); i++) {
-            Auto auto = autos.get(i);
-            Log.e("auto", auto.getMarca() + " " + auto.getAnho());
-        }
-
-//        insertarAuto();
-//
-
-//        leerFiles();
-
-//        method();
-
+        return autos;
     }
 
-    private void insertarAuto() {
-        Auto auto1 = new Auto();
-        auto1.setMarca("Toyota");
-        auto1.setModelo("Yaris");
-        auto1.setAnho(2013);
-        auto1.setPrecio(16000);
-
+    private void insertarAuto(Auto auto1) {
         MyDataBaseHelper myDataBaseHelper = MyDataBaseHelper.getInstance(this);
         SQLiteDatabase database = myDataBaseHelper.getWritableDatabase();
 
@@ -96,8 +99,8 @@ public class LandingActivity extends AppCompatActivity {
             fis.read(buffer);
             String string = new String(buffer, "UTF-8");
 
-            TextView textView = findViewById(R.id.textView);
-            textView.setText(string);
+//            TextView textView = findViewById(R.id.textView);
+//            textView.setText(string);
 
             fis.close();
         } catch (FileNotFoundException e) {
@@ -107,12 +110,12 @@ public class LandingActivity extends AppCompatActivity {
         }
     }
 
-    private void method() {
+    private List<Auto> leerArchivoDeAssets() {
         BufferedReader reader = null;
         StringBuffer sb = new StringBuffer();
         try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("autos.json"), "UTF-8"));
+            InputStreamReader isr = new InputStreamReader(getAssets().open("autos.json"));
+            reader = new BufferedReader(isr);
             String mLine;
             while ((mLine = reader.readLine()) != null) {
                 sb.append(mLine);
@@ -130,10 +133,13 @@ public class LandingActivity extends AppCompatActivity {
         }
         String autosJson = sb.toString();
 
-        Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<Auto>>() {
         }.getType();
+
         List<Auto> autos = new Gson().fromJson(autosJson, listType);
+
         Log.e("Pablo", autosJson);
+
+        return autos;
     }
 }

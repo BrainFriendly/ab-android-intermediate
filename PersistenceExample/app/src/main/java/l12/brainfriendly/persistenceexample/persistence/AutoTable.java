@@ -16,6 +16,7 @@ public class AutoTable {
     public static final String MODELO = "modelo";
     public static final String PRECIO = "precio";
     public static final String ANHO = "anho";
+    public static final String IMAGEN = "imagen";
 
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME
             + "( "
@@ -23,6 +24,7 @@ public class AutoTable {
             + MARCA + " TEXT, "
             + MODELO + " TEXT, "
             + PRECIO + " REAL, "
+            + IMAGEN + " TEXT, "
             + ANHO + " INTEGER "
             + " )";
 
@@ -31,6 +33,7 @@ public class AutoTable {
         contentValues.put(MARCA, auto.getMarca());
         contentValues.put(MODELO, auto.getModelo());
         contentValues.put(PRECIO, auto.getPrecio());
+        contentValues.put(IMAGEN, auto.getImagen());
         contentValues.put(ANHO, auto.getAnho());
 
         return contentValues;
