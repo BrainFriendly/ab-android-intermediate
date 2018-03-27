@@ -56,9 +56,13 @@ En el file build.gradle de la app realizamos lo siguiente :
     //GSON https://github.com/google/gson
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+    
+    //OKHTTP
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
 
     //INTERCEPTOR
-    compile "com.squareup.okhttp3:logging-interceptor:3.10.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
 ```
 
 
