@@ -10,7 +10,6 @@ import com.androidbootcamp.notebackendless.fragments.AddNoteFragment;
 import com.androidbootcamp.notebackendless.fragments.DetailsFragment;
 import com.androidbootcamp.notebackendless.fragments.listener.OnNoteListener;
 import com.androidbootcamp.notebackendless.model.NoteBLEntity;
-import com.androidbootcamp.notebackendless.storage.NoteRepository;
 import com.androidbootcamp.notebackendless.storage.network.ApiClient;
 import com.androidbootcamp.notebackendless.storage.network.StorageConstant;
 import com.androidbootcamp.notebackendless.storage.network.entity.NoteBLRaw;
@@ -41,15 +40,12 @@ public class NoteActivity extends BaseActivity implements OnNoteListener, MyDial
     private NoteBLEntity currentNote;
     private NoteBLEntity noteEntity;
 
-    private NoteRepository noteRepository;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
         validateExtras();
         enabledBack();
-        noteRepository= ((NoteApplication)(getApplication())).getNoteRepository();
 
         Bundle bundle= new Bundle();
         bundle.putSerializable("NOTE", noteEntity);
@@ -122,7 +118,7 @@ public class NoteActivity extends BaseActivity implements OnNoteListener, MyDial
             public void onResponse(Call<NoteBLResponse> call, Response<NoteBLResponse> response) {
                 hideLoading();
                 if(response!=null && response.isSuccessful()){
-                    exitActivity();
+                    //exitActivity();
                 }
             }
 
@@ -132,41 +128,6 @@ public class NoteActivity extends BaseActivity implements OnNoteListener, MyDial
                 showMessage(t.getMessage());
             }
         });
-        /*Call<NoteResponse> call= ApiClient.getMyApiClient().deleteNote(noteId);
-
-        call.enqueue(new Callback<NoteResponse>() {
-            @Override
-            public void onResponse(Call<NoteResponse> call, Response<NoteResponse> response) {
-                hideLoading();
-                if(response!=null){
-                    NoteResponse noteResponse=null;
-
-                    if(response.isSuccessful()) {
-                        noteResponse = response.body();
-                        if(noteResponse!=null && noteResponse.isSuccess()){
-                            currentNote=null;
-                            exitActivity();
-                        }
-                    }else{
-                        JSONObject jsonObject = null;
-                        try {
-                            jsonObject=new JSONObject(response.errorBody().string());
-                        }catch (Exception e){
-                            jsonObject= new JSONObject();
-                        }
-                        noteResponse= GsonHelper.jsonToNoteResponse(jsonObject.toString());
-                        showMessage(noteResponse.getMsg());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<NoteResponse> call, Throwable t) {
-                hideLoading();
-                Toast.makeText(NoteActivity.this,
-                        "error "+t.getMessage(),Toast.LENGTH_LONG).show();
-            }
-        });*/
     }
 
     /*
@@ -193,7 +154,7 @@ public class NoteActivity extends BaseActivity implements OnNoteListener, MyDial
             public void onResponse(Call<NoteBLResponse> call, Response<NoteBLResponse> response) {
                 hideLoading();
                 if(response!=null && response.isSuccessful()){
-                    exitActivity();
+                    //exitActivity();
                 }
             }
 

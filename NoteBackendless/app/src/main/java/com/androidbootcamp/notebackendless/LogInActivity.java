@@ -57,7 +57,7 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validateForm()) {
-                    logIn();
+                    //logIn();
                 }
             }
         });
@@ -124,8 +124,8 @@ public class LogInActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         logInResponse=response.body();
                         if(logInResponse!=null){
-                            saveSession(logInResponse);
-                            gotoMain();
+                            //saveSession(logInResponse);
+                            //gotoMain();
                         }
                     }else{
                         //Log.v("CONSOLE", "error "+logInResponse);

@@ -12,17 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidbootcamp.notebackendless.model.NoteBLEntity;
-import com.androidbootcamp.notebackendless.model.NoteEntity;
 import com.androidbootcamp.notebackendless.storage.network.ApiClient;
-import com.androidbootcamp.notebackendless.storage.network.GsonHelper;
 import com.androidbootcamp.notebackendless.storage.network.StorageConstant;
 import com.androidbootcamp.notebackendless.storage.network.entity.NotesBLResponse;
-import com.androidbootcamp.notebackendless.storage.network.entity.NotesResponse;
 import com.androidbootcamp.notebackendless.storage.preferences.PreferencesHelper;
-import com.androidbootcamp.notebackendless.ui.adapters.NoteAdapter;
 import com.androidbootcamp.notebackendless.ui.adapters.NoteBLAdapter;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,8 +35,6 @@ public class NoteListActivity extends AppCompatActivity {
     private TextView tviLogout,tviUser;
     private ListView lstNotes;
     private Button btnAddNote;
-    private List<NoteEntity> notes;
-    private NoteAdapter noteAdapter;
 
     private List<NoteBLEntity> lsNoteEntities;
     private NoteBLAdapter noteAdapterBL;
@@ -53,6 +45,8 @@ public class NoteListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
         init();
+
+        //loadDataBackendless();
     }
 
     private void loadDataBackendless(){
@@ -73,7 +67,7 @@ public class NoteListActivity extends AppCompatActivity {
                     NotesBLResponse notesResponse=null;
                     if(response.isSuccessful()){
                         notesResponse= response.body();
-                        renderNotesBL(notesResponse);
+                        //renderNotesBL(notesResponse);
                     }else{
                     }
                 }
@@ -85,60 +79,6 @@ public class NoteListActivity extends AppCompatActivity {
                 showMessage(t.getMessage());
             }
         });
-    }
-
-    private void loadDataNetwork(){
-        showLoading();
-        Call<NotesResponse> call= ApiClient.getMyApiClient().notes();
-        call.enqueue(new Callback<NotesResponse>() {
-            @Override
-            public void onResponse(Call<NotesResponse> call, Response<NotesResponse> response) {
-                hideLoading();
-
-                if(response!=null){
-                    NotesResponse notesResponse=null;
-
-                    if(response.isSuccessful()){
-                        notesResponse=response.body();
-                        if(notesResponse!=null){
-                            if(notesResponse.getStatus()==200){
-                                Log.v("CONSOLE", "success "+notesResponse);
-                                renderNotes(notesResponse.getData());
-                            }else{
-                                Log.v("CONSOLE", "error "+notesResponse);
-                            }
-                        }
-                    }else{
-                        Log.v("CONSOLE", "error "+notesResponse);
-                        JSONObject jsonObject = null;
-                        try {
-                            jsonObject=new JSONObject(response.errorBody().string());
-                        }catch (Exception e){
-                            jsonObject= new JSONObject();
-                        }
-
-                        notesResponse= GsonHelper.jsonToNotesResponse(jsonObject.toString());
-                        showErrorMessage(notesResponse.getMsg());
-                    }
-                }else{
-                    showErrorMessage("Ocurrió un error");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<NotesResponse> call, Throwable t) {
-                hideLoading();
-                Toast.makeText(NoteListActivity.this,
-                        "error "+t.getMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
-
-    private void renderNotes(List<NoteEntity> noteEntities){
-        notes= noteEntities;
-        noteAdapter = new NoteAdapter(this,notes);
-        lstNotes.setAdapter(noteAdapter);
     }
 
     private void renderNotesBL(List<NoteBLEntity> mNotes){
@@ -222,7 +162,7 @@ public class NoteListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadDataBackendless();
+        //loadDataBackendless();
     }
 
     @Override

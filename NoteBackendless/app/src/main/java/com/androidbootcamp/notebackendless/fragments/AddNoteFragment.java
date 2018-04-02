@@ -17,15 +17,10 @@ import android.widget.Toast;
 import com.androidbootcamp.notebackendless.R;
 import com.androidbootcamp.notebackendless.fragments.listener.OnNoteListener;
 import com.androidbootcamp.notebackendless.storage.network.ApiClient;
-import com.androidbootcamp.notebackendless.storage.network.GsonHelper;
 import com.androidbootcamp.notebackendless.storage.network.StorageConstant;
 import com.androidbootcamp.notebackendless.storage.network.entity.NoteBLRaw;
 import com.androidbootcamp.notebackendless.storage.network.entity.NoteBLResponse;
-import com.androidbootcamp.notebackendless.storage.network.entity.NoteRaw;
-import com.androidbootcamp.notebackendless.storage.network.entity.NoteResponse;
 import com.androidbootcamp.notebackendless.storage.preferences.PreferencesHelper;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -117,7 +112,7 @@ public class AddNoteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(validateForm()){
-                    addNoteBL();
+                    //addNoteBL();
                 }
             }
         });
@@ -190,7 +185,7 @@ public class AddNoteFragment extends Fragment {
             public void onResponse(Call<NoteBLResponse> call, Response<NoteBLResponse> response) {
                 hideLoading();
                 if(response!=null && response.isSuccessful()){
-                    closeActivity();
+                    //closeActivity();
                 }else{
 
                 }
@@ -205,49 +200,6 @@ public class AddNoteFragment extends Fragment {
         });
     }
 
-    /*
-        POST https://obscure-earth-55790.herokuapp.com/api/notes/register
-        {"msg":"error Need a userId param"}
-     */
-    private void addNoteNetwork(){
-        showLoading();
-        NoteRaw noteRaw= new NoteRaw();
-        noteRaw.setName(name);
-        noteRaw.setDescription(desc);
-        noteRaw.setUserId("001");
-        Call<NoteResponse> call= ApiClient.getMyApiClient().addNote(noteRaw);
-
-        call.enqueue(new Callback<NoteResponse>() {
-            @Override
-            public void onResponse(Call<NoteResponse> call, Response<NoteResponse> response) {
-                hideLoading();
-                if(response!=null){
-                    NoteResponse noteResponse=null;
-
-                    if(response.isSuccessful()) {
-                        closeActivity();
-                    }else{
-                        JSONObject jsonObject = null;
-                        try {
-                            jsonObject=new JSONObject(response.errorBody().string());
-                        }catch (Exception e){
-                            jsonObject= new JSONObject();
-                        }
-                        noteResponse= GsonHelper.jsonToNoteResponse(jsonObject.toString());
-                        showMessage(noteResponse.getMsg());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<NoteResponse> call, Throwable t) {
-                hideLoading();
-                Toast.makeText(getActivity(),
-                        "error "+t.getMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
 
     private void showMessage(String message){
         Toast.makeText(getActivity(),

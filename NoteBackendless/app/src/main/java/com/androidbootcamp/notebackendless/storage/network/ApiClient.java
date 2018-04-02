@@ -1,18 +1,10 @@
 package com.androidbootcamp.notebackendless.storage.network;
 
-import com.androidbootcamp.notebackendless.model.UserEntity;
 import com.androidbootcamp.notebackendless.storage.network.entity.LogInBLRaw;
 import com.androidbootcamp.notebackendless.storage.network.entity.LogInBLResponse;
-import com.androidbootcamp.notebackendless.storage.network.entity.LogInRaw;
-import com.androidbootcamp.notebackendless.storage.network.entity.LogInResponse;
 import com.androidbootcamp.notebackendless.storage.network.entity.NoteBLRaw;
 import com.androidbootcamp.notebackendless.storage.network.entity.NoteBLResponse;
-import com.androidbootcamp.notebackendless.storage.network.entity.NoteRaw;
-import com.androidbootcamp.notebackendless.storage.network.entity.NoteResponse;
 import com.androidbootcamp.notebackendless.storage.network.entity.NotesBLResponse;
-import com.androidbootcamp.notebackendless.storage.network.entity.NotesResponse;
-import com.androidbootcamp.notebackendless.storage.network.entity.UserRaw;
-import com.androidbootcamp.notebackendless.storage.network.entity.UsersResponse;
 
 import java.util.Map;
 
@@ -97,6 +89,7 @@ public class ApiClient {
 
         // ------------------------------------------------------------------
 
+        /*
         //https://obscure-earth-55790.herokuapp.com/api/login
         @POST("/api/login")
         Call<LogInResponse> login(@Body LogInRaw raw);
@@ -124,7 +117,6 @@ public class ApiClient {
         @DELETE("/api/notes/{id}")
         Call<NoteResponse> deleteNote(@Path("id") String noteId);
 
-        /*
         //v1/data/Notes
         @GET("/v1/data/Notes")
         Call<NotesResponse> notes();
@@ -141,10 +133,6 @@ public class ApiClient {
 
     }
 
-    /*private static OkHttpClient.Builder client(){
-        if(httpClient==null)httpClient=new OkHttpClient.Builder();
-        return httpClient;
-    }*/
     private  static  HttpLoggingInterceptor interceptor(){
         HttpLoggingInterceptor httpLoggingInterceptor= new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
