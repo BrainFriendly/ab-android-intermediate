@@ -171,6 +171,128 @@ Para realizar la llamada desde la app, en la clase *LogInActivity*
     }
 ```
 
+- Obtener elementos de una tabla https://backendless.com/docs/rest/doc.html#dynanchor2
+
+Usamos *Data Service API*
+
+Método : GET
+
+URL : 
+```
+https://api.backendless.com/<application-id>/<REST-api-key>/data/<table-name>
+```
+
+Request Headers :
+
+```
+user-token:value-of-the-user-token-header-from-login
+```
+
+Request body :
+
+```
+none
+```
+
+Response body :
+
+```
+[
+	{
+		"created": 1520381912645,
+		"description": "Esta una nota 2",
+		"title": "Nota 2",
+		"ownerId": "B0254EE8-CC3E-EDD8-FF5A-423577F08F00",
+		"updated": null,
+		"objectId": "54A27887-55B1-73AB-FFC7-0BA59F761000",
+		"___class": "Note"
+	},
+	{
+		"created": 1510344329602,
+		"description": "Subir notas de U2 y U3 en isil",
+		"title": "Subir notas",
+		"ownerId": null,
+		"updated": 1512173912679,
+		"objectId": "6484C388-D7FF-65C9-FF1C-934062327900",
+		"___class": "Note"
+	},
+	{
+		"created": 1510968214089,
+		"description": "Esta es un nota desde backendless",
+		"title": "Nota desde BL",
+		"ownerId": "B0254EE8-CC3E-EDD8-FF5A-423577F08F00",
+		"updated": null,
+		"objectId": "788FF40F-00DB-2FB2-FF7F-3C9F630CEA00",
+		"___class": "Note"
+	},
+	{
+		"created": 1510970748399,
+		"description": "Esta es una nota de prueba desde BL 1",
+		"title": "Nota de prueba desde BL 1",
+		"ownerId": "B0254EE8-CC3E-EDD8-FF5A-423577F08F00",
+		"updated": 1512173925885,
+		"objectId": "CBAD6A9E-F26C-04CE-FF76-C2D8A1B84900",
+		"___class": "Note"
+	},
+	{
+		"created": 1520381606285,
+		"description": "Nota de prueba",
+		"title": "Note 1",
+		"ownerId": "B0254EE8-CC3E-EDD8-FF5A-423577F08F00",
+		"updated": null,
+		"objectId": "E4B4B15D-9EDE-675A-FFB7-CA51A0094600",
+		"___class": "Note"
+	}
+]
+```
+
+- Listar notas en la app
+
+Primero registramos la petición en la clase *ApiClient*
+
+```
+ //https://api.backendless.com/7FBB8DC0-4C21-0178-FF76-367F7D30DC00/E5214A86-653A-529C-FF73-95B4DD4F8C00/data/Note
+        @GET("/{applicationid}/{restapikey}/data/Note")
+        Call<NotesBLResponse> notesbl(@Path("applicationid") String appID,
+                                      @Path("restapikey") String restApiKEY, @HeaderMap Map<String, String> headers);
+```
+
+Luego en la vista *NoteListActivity* realizamos la llamada para que nos devuelva el listado de notas
+
+```
+private void loadDataBackendless(){
+        showLoading();
+
+        String token= PreferencesHelper.getTokenSession(this);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("user-token",token);
+        Call<NotesBLResponse> call= ApiClient.getMyApiClient().notesbl(
+                StorageConstant.APPLICATIONID, StorageConstant.RESTAPIKEY,map);
+
+        call.enqueue(new Callback<NotesBLResponse>() {
+            @Override
+            public void onResponse(Call<NotesBLResponse> call, Response<NotesBLResponse> response) {
+                hideLoading();
+                if(response!=null){
+                    NotesBLResponse notesResponse=null;
+                    if(response.isSuccessful()){
+                        notesResponse= response.body();
+                        renderNotesBL(notesResponse);
+                    }else{
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NotesBLResponse> call, Throwable t) {
+                hideLoading();
+                showMessage(t.getMessage());
+            }
+        });
+    }
+```
+
 ## BackendLess
 
 - Backendless https://backendless.com
