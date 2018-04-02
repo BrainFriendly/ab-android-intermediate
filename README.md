@@ -293,6 +293,13 @@ private void loadDataBackendless(){
     }
 ```
 
+- Guadar un elemento en la BD https://backendless.com/docs/rest/doc.html#data_saving_data_objects
+
+- Actualizar un registro https://backendless.com/docs/rest/doc.html#data_updating_data_objects
+
+- Eliminar un registro https://backendless.com/docs/rest/doc.html#data_deleting_data_objects
+
+
 ## BackendLess
 
 - Backendless https://backendless.com
