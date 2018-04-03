@@ -118,7 +118,7 @@ public class NoteActivity extends BaseActivity implements OnNoteListener, MyDial
             public void onResponse(Call<NoteBLResponse> call, Response<NoteBLResponse> response) {
                 hideLoading();
                 if(response!=null && response.isSuccessful()){
-                    //exitActivity();
+                    exitActivity();
                 }
             }
 
@@ -154,7 +154,7 @@ public class NoteActivity extends BaseActivity implements OnNoteListener, MyDial
             public void onResponse(Call<NoteBLResponse> call, Response<NoteBLResponse> response) {
                 hideLoading();
                 if(response!=null && response.isSuccessful()){
-                    //exitActivity();
+                    exitActivity();
                 }
             }
 

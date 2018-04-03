@@ -112,7 +112,7 @@ public class AddNoteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(validateForm()){
-                    //addNoteBL();
+                    addNoteBL();
                 }
             }
         });
@@ -185,7 +185,7 @@ public class AddNoteFragment extends Fragment {
             public void onResponse(Call<NoteBLResponse> call, Response<NoteBLResponse> response) {
                 hideLoading();
                 if(response!=null && response.isSuccessful()){
-                    //closeActivity();
+                    closeActivity();
                 }else{
 
                 }

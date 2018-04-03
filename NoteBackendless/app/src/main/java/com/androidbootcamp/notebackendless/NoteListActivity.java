@@ -67,7 +67,7 @@ public class NoteListActivity extends AppCompatActivity {
                     NotesBLResponse notesResponse=null;
                     if(response.isSuccessful()){
                         notesResponse= response.body();
-                        //renderNotesBL(notesResponse);
+                        renderNotesBL(notesResponse);
                     }else{
                     }
                 }
@@ -162,7 +162,7 @@ public class NoteListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //loadDataBackendless();
+        loadDataBackendless();
     }
 
     @Override

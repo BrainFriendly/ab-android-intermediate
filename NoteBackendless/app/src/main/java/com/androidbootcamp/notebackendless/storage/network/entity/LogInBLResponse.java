@@ -20,6 +20,11 @@ import com.google.gson.annotations.SerializedName;
     "__meta": "{\"relationRemovalIds\":{},\"selectedProperties\":[\"ownerId\",\"email\",\"objectId\",\"lastname\",\"updated\",\"name\",\"password\",\"created\",\"userStatus\",\"lastLogin\",\"__updated__meta\",\"___class\"],\"relatedObjects\":{}}",
     "user-token": "73034DA7-61AE-331B-FF73-2BA295394400"
 }
+{
+    "code": 3003,
+    "message": "Invalid login or password",
+    "errorData": {}
+}
  */
 public class LogInBLResponse {
     private String objectId;
