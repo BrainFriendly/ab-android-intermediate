@@ -1,40 +1,24 @@
 # ab-android-intermediate
 Android Bootcamp - Android Intermediate
 
-## Temario
-
-- Navigation componentes
-
-  - Navigation Drawer, Tabs, ViewPager
-
-- Storage Options
-
-  - Shared preferences
+## Lesson 7
   
-  - Local Database (Sqlite)
-  
-  - Room Persistence Library (Room)
-  
-  - Remote Connection (RESTFul services)
-   
-- Android M 
+- Runtime permissions
 
-  - Runtime Permissions
-
-- Google Maps API
-
-  - Geolocation
-  
-  - Google Maps API
-  
-- Android Design & Material Design
+- Multimedia
 
 
-## Referencias
+## References 
 
-- Storage Options https://developer.android.com/guide/topics/data/data-storage.html?hl=en
+- Request App Permissions https://developer.android.com/training/permissions/requesting.html
 
-- Transmitting Network Data Using Volley https://developer.android.com/training/volley/index.html
+- Permissions Overview https://developer.android.com/guide/topics/permissions/overview.html
 
-- Room Persistence Library https://developer.android.com/topic/libraries/architecture/room.html
+- Request permissions at runtime appropriately https://developer.android.com/distribute/best-practices/develop/runtime-permissions.html
+
+- App Permissions https://developer.android.com/guide/topics/permissions/overview.html
+
+- App Permissions Best Practices https://developer.android.com/training/permissions/usage-notes.html
+
+- Exoplayer http://google.github.io/ExoPlayer/
 
