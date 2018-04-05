@@ -22,3 +22,7 @@ Android Bootcamp - Android Intermediate
 
 - Exoplayer http://google.github.io/ExoPlayer/
 
+- Android Developers https://android-developers.googleblog.com/2017/12/improving-app-security-and-performance.html
+
+- Dashboards https://developer.android.com/about/dashboards/index.html
+
