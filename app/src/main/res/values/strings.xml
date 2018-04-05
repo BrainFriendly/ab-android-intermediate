@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NetworkConnection</string>
+    <string name="tituloNotaHint">Titulo de la nota</string>
+    <string name="descripcionNotaHint">Descripcion de la nota</string>
+    <string name="grabarNotaLabel">Grabar Nota</string>
+    <string name="newNoteMenuLabel">Nueva</string>
+    <string name="deleteNoteLabel">Eliminar Nota</string>
+    <string name="updateNoteLabel">Actualizar Nota</string>
+</resources>

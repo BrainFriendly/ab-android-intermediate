@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="l12.brainfriendly.networkconnection.ui.NoteDetailActivity">
+
+    <EditText
+        android:id="@+id/tituloNota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/tituloNotaHint"
+        android:singleLine="true"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/descripcionNota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tituloNota"
+        android:layout_margin="10dp"
+        android:gravity="top"
+        android:hint="@string/descripcionNotaHint"
+        android:lines="10"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/deleteNoteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/deleteNoteLabel"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/updateNoteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/deleteNoteButton"
+        android:text="@string/updateNoteLabel"
+        android:textSize="16sp" />
+
+</RelativeLayout>
