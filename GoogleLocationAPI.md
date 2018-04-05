@@ -138,7 +138,7 @@ Para activar las actualizaciones de ubicación es necesario llamar al método re
 El tercer parámetro sera un un LocationListener el cual tendremos que implementar para manejar las actualizaciones.
 
 ```java
-@Override
+    @Override
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
         updateUI();
