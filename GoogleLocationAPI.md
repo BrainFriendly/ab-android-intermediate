@@ -131,7 +131,8 @@ private void addAndCheckRequest() {
 Para activar las actualizaciones de ubicación es necesario llamar al método requestLocationUpdates utilizando el LocationRequest que creamos previamente.
 
 ```java
-protected void startLocationUpdates() {        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+protected void startLocationUpdates() {        
+LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 ```
 El tercer parámetro sera un un LocationListener el cual tendremos que implementar para manejar las actualizaciones.
