@@ -23,49 +23,36 @@ dependencies {
 ## Trabajar con la ultima ubicación conocida
 Para obtener la ultima ubicación conocida del usuario debemos usar el proveedor de ubicación *fused*. Este proveedor encapsula la parte técnica y provee una API bastante simple con la cual se puede especificar requerimientos a alto nivel como alta precisión o poco consumo. También optimiza el uso de la batería del dispositivo.
 
-## Conectarnos a los servicios de Google
-Para conectarnos al API necesitamos crear una instancia del cliente API de los servicios de Google Play. Dentro del método `onCreate()` creamos la instancia como lo indica el siguiente código:
-```java
-if (mGoogleApiClient == null) {
-    mGoogleApiClient = new GoogleApiClient.Builder(this)
-        .addConnectionCallbacks(this)
-        .addOnConnectionFailedListener(this)
-        .addApi(LocationServices.API)
-        .build();
-}
-```
-Para conectar, llama al método `connect()` en el método `onStart()` de la actividad. Para desconectar, llama al método `disconnect()` dentro de método `onStop()`.
-```java
-protected void onStart() {
-    mGoogleApiClient.connect();
-    super.onStart();
-}
-
-protected void onStop() {
-    mGoogleApiClient.disconnect();
-    super.onStop();
-}
-```
 
 ## Cómo obtener la última posición conocida del usuario?
-Una vez que nos hayamos conectado con el API de los servicios de Google Play, ya podemos conocer la ultima ubicación conocida del dispositivo del usuario. Cuando la aplicación esta conectada a estos podemos usar el método `getLastLocation()` del proveedor fused para obtener la posición. La precisión obtenida de esta llamada está determinada por el permiso que hayamos solicitado en el manifest.
-El llamado al `getLastLocation()` debe hacerse en el método onConnected() del cliente de API de Google.
+Inicializamos el proveedor Fused y luego llamamos al metodo getLastLocation() y le agregamos un successListener.
+La precisión obtenida de esta llamada está determinada por el permiso que hayamos solicitado en el manifest (o runtime).
+
 ```java
 public class MainActivity extends ActionBarActivity implements
         ConnectionCallbacks, OnConnectionFailedListener {
     ...
     @Override
-    public void onConnected(Bundle connectionHint) {
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        if (mLastLocation != null) {
-            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
-            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
-        }
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+    	.
+	.
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+	mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                // Got last known location. In some rare situations this can be null.
+                if (location != null) {
+		    updateUI(location);
+                    // Logic to handle location object
+                }
+            }
+        });
+	.
+	.
+   }
 }
 ```
-El método getLastLocation() devuelve un objeto Location del cual se puede obtener la latitud y longitud del dispositivo de usuario. El objeto obtenido puede ser nulo en algunos casos.
+El método onSuccess() trae un parametro Location del cual se puede obtener la latitud y longitud del dispositivo de usuario. El objeto obtenido puede ser nulo en algunos casos.
 
 
 ## Configurando las actualizaciones de ubicación
@@ -90,37 +77,42 @@ protected void createLocationRequest() {
 ```
 
 ## Pedir al usuario que cambie la configuración de ubicación
-Para verificar si las configuración de la ubicación es apropiada para el request que hemos generado necesitamos verificar el código de estatus del objeto `LocationSettingsResult`. Un estado `RESOLUTION_REQUIRED`indica la configuración debe ser cambiada.
-To determine whether the location settings are appropriate for the location request, check the status code from the LocationSettingsResult object. A status code of indicates that the settings must be changed. To prompt the user for permission to modify the location settings, call startResolutionForResult(Activity, int). This method brings up a dialog asking for the user's permission to modify location settings. The following code snippet shows how to check the location settings, and how to call startResolutionForResult(Activity, int).
+Para verificar si las configuración de la ubicación es apropiada para el request que hemos generado creamos un `task` que se encargara de verificar si los settings del dispositivo cumplen con las necesidades de nuestro request.
+Agregamos dos listeners a nuestro task  `OnSuccessListener` y  `OnFailureListener`. Recibiremos una respuesta por el primero si es que los settings satisfacen al request creado. De lo contrario recibiremos una respuesta por el segundo listener la cual manejaremos para plantearle al usuario una solucion
 
 ```java
-private void addAndCheckRequest() {
-        createLocationRequest();
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
-        PendingResult<LocationSettingsResult> result =                LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
-        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+   private void checkLocationSettings() {
+        if (mLocationRequest == null) {
+            createLocationRequest();
+        }
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(mLocationRequest);
+        SettingsClient client = LocationServices.getSettingsClient(this);
+        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+        task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
             @Override
-            public void onResult(LocationSettingsResult result) {
-                final Status status = result.getStatus();
-                final LocationSettingsStates locationSettingsStates = result.getLocationSettingsStates();
-                switch (status.getStatusCode()) {
-                    case LocationSettingsStatusCodes.SUCCESS:
-                        startLocationUpdates();
-
-                        break;
-                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                        // La configuracion no ha sido satisfactoria pero puede ser arreglada mostrando el siguiente dialogo
-                        try {
-
-                            status.startResolutionForResult(GoogleLocationActivity.this, REQUEST_CHECK_SETTINGS);
-                        } catch (IntentSender.SendIntentException e) {
-                            // Ignorar el error
-                        }
-                        break;
-                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                        // La configuracion no ha sido satisfactoria y no hay nada que hacer por lo que el dialogo no se mostrara
-
-                        break;
+            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                // All location settings are satisfied. The client can initialize
+                // location requests here.
+                // ...
+                startLocationUpdates();
+            }
+        });
+        task.addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if (e instanceof ResolvableApiException) {
+                    // Location settings are not satisfied, but this can be fixed
+                    // by showing the user a dialog.
+                    try {
+                        // Show the dialog by calling startResolutionForResult(),
+                        // and check the result in onActivityResult().
+                        ResolvableApiException resolvable = (ResolvableApiException) e;
+                        resolvable.startResolutionForResult(GoogleLocationActivity.this,
+                                REQUEST_CHECK_SETTINGS);
+                    } catch (IntentSender.SendIntentException sendEx) {
+                        // Ignore the error.
+                    }
                 }
             }
         });
@@ -132,17 +124,28 @@ Para activar las actualizaciones de ubicación es necesario llamar al método re
 
 ```java
     protected void startLocationUpdates() {        
-	LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+	mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
     }
 ```
-El tercer parámetro sera un un LocationListener el cual tendremos que implementar para manejar las actualizaciones.
+El segundo parámetro sera un un LocationCallback el cual tendremos que implementar para manejar las respuestas.
 
 ```java
-    @Override
-    public void onLocationChanged(Location location) {
-        mCurrentLocation = location;
-        updateUI();
-    }
+	mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    return;
+                }
+                for (Location location : locationResult.getLocations()) {
+                    // Update UI with location data
+                    // ...
+                    updateUI(location);
+                    break;
+                }
+            }
+
+            ;
+        };
 ```
 
 ## Referencias
