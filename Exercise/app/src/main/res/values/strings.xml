@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MapsAndLocation</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="androidLocationApiButtonLabel">Android Location API</string>
+    <string name="googleLocationApiButtonLabel">Google Location API</string>
+    <string name="googleMapsApiButtonLabel">Google Maps</string>
+    <string name="latLongPlaceHolder">Latitud = %f, \nLongitud = %f</string>
+    <string name="startLocationUpdatesButtonLabel">Start Location Updates</string>
+</resources>
