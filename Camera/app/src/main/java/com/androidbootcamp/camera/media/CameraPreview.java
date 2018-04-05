@@ -1,4 +1,4 @@
-package com.androidbootcamp.androidtemplate.media;
+package com.androidbootcamp.camera.media;
 
 /**
  * Created by emedinaa on 25/02/17.

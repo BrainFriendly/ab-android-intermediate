@@ -1,4 +1,4 @@
-package com.androidbootcamp.androidtemplate.media;
+package com.androidbootcamp.camera.media;
 
 import android.os.Environment;
 

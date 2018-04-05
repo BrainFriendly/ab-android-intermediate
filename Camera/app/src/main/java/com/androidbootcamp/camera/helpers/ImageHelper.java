@@ -1,4 +1,4 @@
-package com.androidbootcamp.androidtemplate.helpers;
+package com.androidbootcamp.camera.helpers;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

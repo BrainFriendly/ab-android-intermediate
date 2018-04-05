@@ -1,4 +1,4 @@
-package com.androidbootcamp.androidtemplate;
+package com.androidbootcamp.camera;
 
 import android.Manifest;
 import android.content.Intent;
@@ -18,9 +18,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.androidbootcamp.androidtemplate.helpers.ImageHelper;
-import com.androidbootcamp.androidtemplate.media.AlbumStorageDirFactory;
-import com.androidbootcamp.androidtemplate.media.BaseAlbumDirFactory;
+import com.androidbootcamp.camera.helpers.ImageHelper;
+import com.androidbootcamp.camera.media.AlbumStorageDirFactory;
+import com.androidbootcamp.camera.media.BaseAlbumDirFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -131,12 +131,12 @@ public class CameraIntentActivity extends AppCompatActivity  implements View.OnC
     //media
 
     protected void renderPhoto() {
-        Bitmap bitmap= imageHelper.bitmapByPath(imageView.getWidth(),
-                imageView.getHeight(),mCurrentPhotoPath);
-        /*BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        /*Bitmap bitmap= imageHelper.bitmapByPath(imageView.getWidth(),
+                imageView.getHeight(),mCurrentPhotoPath);*/
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
 
-        Bitmap bitmap= BitmapFactory.decodeFile(currentPhotoPath,bmOptions);
-        */
+        Bitmap bitmap= BitmapFactory.decodeFile(mCurrentPhotoPath,bmOptions);
+
         imageView.setImageBitmap(bitmap);
     }
     protected void processPhotoGallery(Uri photoUri){

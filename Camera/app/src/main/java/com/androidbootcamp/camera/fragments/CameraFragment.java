@@ -1,4 +1,4 @@
-package com.androidbootcamp.androidtemplate.fragments;
+package com.androidbootcamp.camera.fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,9 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-
-import com.androidbootcamp.androidtemplate.R;
-import com.androidbootcamp.androidtemplate.media.CameraPreview;
+import com.androidbootcamp.camera.R;
+import com.androidbootcamp.camera.media.CameraPreview;
 
 import java.io.File;
 import java.io.FileNotFoundException;

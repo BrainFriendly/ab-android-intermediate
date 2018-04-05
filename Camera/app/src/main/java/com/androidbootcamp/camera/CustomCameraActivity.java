@@ -1,4 +1,4 @@
-package com.androidbootcamp.androidtemplate;
+package com.androidbootcamp.camera;
 
 import android.Manifest;
 import android.app.Activity;
@@ -13,8 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.androidbootcamp.androidtemplate.helpers.ImageHelper;
-import com.androidbootcamp.androidtemplate.media.CameraActivity;
+import com.androidbootcamp.camera.helpers.ImageHelper;
+import com.androidbootcamp.camera.media.CameraActivity;
 
 
 public class CustomCameraActivity extends AppCompatActivity {

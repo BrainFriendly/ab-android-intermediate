@@ -9,9 +9,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.androidbootcamp.camera"
-        //minSdkVersion 15
         minSdkVersion rootProject.ext.minSdkVersion
-        //targetSdkVersion 26
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"

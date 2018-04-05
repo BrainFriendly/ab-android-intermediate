@@ -1,4 +1,4 @@
-package com.androidbootcamp.androidtemplate;
+package com.androidbootcamp.camera;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

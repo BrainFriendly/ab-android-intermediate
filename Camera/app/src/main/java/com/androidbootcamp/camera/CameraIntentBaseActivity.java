@@ -1,4 +1,4 @@
-package com.androidbootcamp.androidtemplate;
+package com.androidbootcamp.camera;
 /**
  * https://developer.android.com/training/permissions/requesting.html
  */
@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -91,12 +92,16 @@ public class CameraIntentBaseActivity extends BaseMediaActivity implements View.
         boolean cameraAvailable= intentHelper.isIntentAvailable(this, MediaStore.ACTION_IMAGE_CAPTURE);
         if(!cameraAvailable)return;
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         File f = null;
         try {
             f = setUpPhotoFile();
             currentPhotoPath = f.getAbsolutePath();
-            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+
+            Uri photoUri= FileProvider.getUriForFile(this,"com.androidbootcamp.camera",f);
+            //takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
         } catch (IOException e) {
             e.printStackTrace();
             f = null;

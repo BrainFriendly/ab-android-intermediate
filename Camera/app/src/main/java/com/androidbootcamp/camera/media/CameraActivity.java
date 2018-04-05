@@ -1,11 +1,11 @@
-package com.androidbootcamp.androidtemplate.media;
+package com.androidbootcamp.camera.media;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.androidbootcamp.androidtemplate.R;
-import com.androidbootcamp.androidtemplate.fragments.OnCamerActionListener;
+import com.androidbootcamp.camera.R;
+import com.androidbootcamp.camera.fragments.OnCamerActionListener;
 
 
 public class CameraActivity extends AppCompatActivity implements OnCamerActionListener {

@@ -1,4 +1,4 @@
-package com.androidbootcamp.androidtemplate.fragments;
+package com.androidbootcamp.camera.fragments;
 
 /**
  * Created by emedinaa on 24/02/17.

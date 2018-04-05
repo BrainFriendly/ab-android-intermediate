@@ -1,4 +1,4 @@
-package com.androidbootcamp.androidtemplate;
+package com.androidbootcamp.camera;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -14,11 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 
-import com.androidbootcamp.androidtemplate.helpers.ImageHelper;
-import com.androidbootcamp.androidtemplate.helpers.IntentHelper;
-import com.androidbootcamp.androidtemplate.media.AlbumStorageDirFactory;
-import com.androidbootcamp.androidtemplate.media.BaseAlbumDirFactory;
-import com.androidbootcamp.androidtemplate.media.FroyoAlbumDirFactory;
+import com.androidbootcamp.camera.helpers.ImageHelper;
+import com.androidbootcamp.camera.helpers.IntentHelper;
+import com.androidbootcamp.camera.media.AlbumStorageDirFactory;
+import com.androidbootcamp.camera.media.BaseAlbumDirFactory;
+import com.androidbootcamp.camera.media.FroyoAlbumDirFactory;
 
 import java.io.File;
 import java.io.IOException;
