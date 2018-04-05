@@ -1,13 +1,16 @@
 package com.androidbootcamp.androidtemplate;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 public class ContactPermissionsActivity extends AppCompatActivity {
 
@@ -63,6 +66,7 @@ public class ContactPermissionsActivity extends AppCompatActivity {
             // Contact permissions have been granted. Show the contacts fragment.
             Log.i(TAG,
                     "Contact permissions have already been granted. Displaying contact details.");
+            Toast.makeText(this, "Contact permissions have already been granted. Displaying contact details.", Toast.LENGTH_SHORT).show();
             showContactDetails();
         }
     }
@@ -104,5 +108,24 @@ public class ContactPermissionsActivity extends AppCompatActivity {
                 .replace(R.id.sample_content_fragment, ContactsFragment.newInstance())
                 .addToBackStack("contacts")
                 .commit();*/
+
+        startActivity(new Intent(this,ContactDetailsActivity.class));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == REQUEST_CONTACTS) {
+
+            if (grantResults.length == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1]==PackageManager.PERMISSION_GRANTED) {
+                showContactDetails();
+            }else{
+                Toast.makeText(this,"Permisos denegados",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
     }
 }

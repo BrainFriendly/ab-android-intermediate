@@ -10,6 +10,8 @@
      On Android M and above, use of these permissions is only requested at run time.
     -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <!-- END_INCLUDE(manifest) -->
     <application
@@ -30,23 +32,26 @@
             -->
         </activity>
         <activity android:name=".CameraPermissionActivity">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".camera.CameraPreviewActivity"
+            android:exported="false" />
+        <activity android:name=".ContactPermissionsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".camera.CameraPreviewActivity"
-            android:exported="false" />
-
-        <activity android:name=".ContactPermissionsActivity">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
+        <activity android:name=".ContactDetailsActivity"></activity>
     </application>
 
 </manifest>
