@@ -3,7 +3,7 @@ Obtenido de https://github.com/googlemaps/android-samples
 Google Maps Android API v2 Samples
 ===================================
 
-Demos que demuestran como usar 
+Demos de como usar 
 [Google Maps Android API v2](https://developers.google.com/maps/documentation/android/).
 
 Este repo contiene los siguientes demos:
