@@ -26,3 +26,5 @@ Android Bootcamp - Android Intermediate
 
 - Dashboards https://developer.android.com/about/dashboards/index.html
 
+- Fragmentación https://opensignal.com/reports/2015/08/android-fragmentation/
+
