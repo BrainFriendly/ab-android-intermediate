@@ -6,8 +6,12 @@ import com.androidbootcamp.notebackendless.storage.RemoteCallback;
 import com.androidbootcamp.notebackendless.storage.RemoteProvider;
 import com.androidbootcamp.notebackendless.storage.network.entity.LogInBLRaw;
 import com.androidbootcamp.notebackendless.storage.network.entity.LogInBLResponse;
+import com.androidbootcamp.notebackendless.storage.network.entity.NotesBLResponse;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,6 +77,36 @@ public class RestProvider implements RemoteProvider {
 
             @Override
             public void onFailure(Call<LogInBLResponse> call, Throwable t) {
+                callback.onFailure(new Exception(t));
+            }
+        });
+    }
+
+    @Override
+    public void notes(String token, final RemoteCallback callback) {
+        Map<String, String> map = new HashMap<>();
+        map.put("user-token",token);
+        Call<NotesBLResponse> call= ApiClient.getMyApiClient().notesbl(
+                StorageConstant.APPLICATIONID, StorageConstant.RESTAPIKEY,map);
+
+        call.enqueue(new Callback<NotesBLResponse>() {
+            @Override
+            public void onResponse(Call<NotesBLResponse> call, Response<NotesBLResponse> response) {
+                if(response!=null){
+                    NotesBLResponse notesResponse;
+                    if(response.isSuccessful()){
+                        notesResponse= response.body();
+                        callback.onSuccess(notesResponse);
+                    }else{
+                        callback.onFailure(new Exception("Ocurrió un error"));
+                    }
+                }else{
+                    callback.onFailure(new Exception("Ocurrió un error"));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NotesBLResponse> call, Throwable t) {
                 callback.onFailure(new Exception(t));
             }
         });

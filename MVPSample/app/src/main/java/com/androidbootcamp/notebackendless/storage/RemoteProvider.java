@@ -8,5 +8,6 @@ package com.androidbootcamp.notebackendless.storage;
 
 public interface RemoteProvider {
 
-    public void logIn(String username, String password, final RemoteCallback callback);
+    void logIn(String username, String password, final RemoteCallback callback);
+    void notes(String token, final RemoteCallback callback);
 }
