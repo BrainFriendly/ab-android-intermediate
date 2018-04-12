@@ -96,7 +96,6 @@ public class LogInMVPActivity extends AppCompatActivity implements LogInView {
 
     @Override
     public void gotoMain() {
-        //Intent intent= new Intent(this,NoteListActivity.class);
         Intent intent= new Intent(this,NoteListMVPActivity.class);
         startActivity(intent);
     }

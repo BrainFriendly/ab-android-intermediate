@@ -48,7 +48,7 @@ public class NoteListMVPActivity extends AppCompatActivity
         setContentView(R.layout.activity_note_list);
         setUpPresenter();
         init();
-        loadNotes();
+        //loadNotes();
 
     }
 
@@ -73,7 +73,7 @@ public class NoteListMVPActivity extends AppCompatActivity
         btnAddNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //gotoNote(ACTION_ADD, null);
+                goToNote(ACTION_ADD, null);
             }
         });
 
@@ -81,7 +81,7 @@ public class NoteListMVPActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 NoteBLEntity noteEntity = (NoteBLEntity) adapterView.getAdapter().getItem(i);
-                //gotoNote(ACTION_DETAIL, noteEntity);
+                goToNote(ACTION_DETAIL, noteEntity);
             }
         });
 
@@ -151,5 +151,11 @@ public class NoteListMVPActivity extends AppCompatActivity
     @Override
     public void emptyNotes() {
         //mostrar mensaje que la lista vacía
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadNotes();
     }
 }
