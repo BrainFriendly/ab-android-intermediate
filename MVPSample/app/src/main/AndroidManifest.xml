@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme"
         android:name=".NoteApplication">
         <activity
-            android:name=".NoteListActivity"
+            android:name=".NoteListMVPActivity"
             android:screenOrientation="portrait">
 
         </activity>
@@ -21,7 +21,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".LogInActivity"
+            android:name=".LogInMVPActivity"
             android:screenOrientation="portrait" >
         </activity>
 

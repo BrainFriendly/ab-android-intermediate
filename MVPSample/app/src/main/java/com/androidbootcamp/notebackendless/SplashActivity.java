@@ -25,13 +25,12 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent;
                 Bundle bundle= new Bundle();
-                //bundle.putString("KEY","VALOR");
                 boolean session= PreferencesHelper.isSignedIn(SplashActivity.this);
                 if(session)
                 {
-                    intent=new Intent(SplashActivity.this, NoteListActivity.class);
+                    intent=new Intent(SplashActivity.this, NoteListMVPActivity.class);
                 }else {
-                    intent = new Intent(SplashActivity.this, LogInActivity.class);
+                    intent = new Intent(SplashActivity.this, LogInMVPActivity.class);
                 }
                 intent.putExtras(bundle);
                 startActivity(intent);
