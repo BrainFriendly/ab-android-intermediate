@@ -1,46 +1,116 @@
 # ab-android-intermediate
 Android Bootcamp - Android Intermediate
 
-## Lesson 9
+## Lesson11
 
-- Android Architecture Patterns 
+- Preparar Aplicación para producción
 
-- MVP (Model View Presenter)
+  - Crear credenciales 
+  
+  - Firmar app
+  
+  - Generar APK
 
-## Patrones y Arquitectura de aplicaciones móviles
+- Google Play console
 
-- Explicaremos un poco de las diferentes opciones de patrones y arquitecturas para el desarrollo de aplicaciones móviles.
+  - Crear ficha
+  
+  - Modos de distribución
+  
+  - Entorno de pruebas
+  
+  - Publicar App
+  
+### Preparar Aplicación para producción
 
-- Usaremos el patrón Model View Presenter (MVP)
+- Generar una APK firmada
 
- <img src="https://github.com/emedinaa/android-mvp/blob/master/modelviewpresenter.png" height="480">
+![img](images/generate_apk1.png)
 
- - Model : Esta relacionado a las entidades y los cambios que se den estas.
+![img](images/generate_apk2.png)
 
-    - Entidad : Entidades de nuesta app, ejemplo UserEntity
-    - Cambios en el modelo : Aquí puede estar nuestros proveedores de datos , como sqlite para persistencia local o las peticiones a servicios (conexión remota).
+![img](images/generate_apk3.png)
 
-- View : Esta elemento se comparto como un terminal tonto o pasivo,  donde solo tiene declarada acciones de la vista pero no lógica propia de la app. Esta a la espera que un controlador le diga las acciones a realizar.
+- Crear credenciales
 
-    - ¿Qué son acciones de una vista?, Las acciones de vista son cosas como : mostrar una ventana de cargando, mostrar un mensaje de error, validar campos de un formulario, cambiar de pantalla.
-    - Los fragments y las activities son Views ?, estrictamente hablando no, yo puedo crear un interface que represente lo que va a realizar una vista. La idea es trabajar con la interface y no directamente con el fragment o activity.
+![img](images/generate_apk4.png)
 
-- Presenter : Este elemento va tener la lógica , se comunica con el módelo. Recibe los cambios del modelo y actualiza la vista. Se comporta como controlador de las vistas.
+![img](images/generate_apk5.png)
+
+![img](images/generate_apk5-1.png)
+
+- Crear APK
+
+![img](images/generate_apk6.png)
+
+![img](images/generate_apk7.png)
+
+![img](images/output_release.png)
+
+- Comandos
+
+```
+	./gradlew assembleDebug
+
+	./gradlew installDebug
+```
+
+![img](images/output_debug.png)
+
+
+### Google Play console
+
+- Ficha Google Play
+
+Título (50)
+
+Descripción breve (80)
+
+Descripción completa (4000)
+
+Recursos gráficos
+	
+> Captura de pantalla para teléfono (min 2)
+
+> Icono de alta resolución 512x512
+
+> Imagen destacada 1024x500
+
+> Imagen promocional 180x120
+
+Categorización
+
+> Tipo de app y categoría
+
+- Clasificación de Contenido
+
+- Precio y distribución
+
+- Version de la aplicación
+
+	> Producción (Google play)
+
+	> Beta (Google play)
+
+	> Alfa
+
+	> Prueba interna	
 
 
 ## References 
 
- - Principios S.O.L.I.D https://academy.realm.io/posts/learning-path-solid-principles-for-android/
+- Google Play console dashboard https://developer.android.com/distribute/console/index.html
 
- - Android Architecture Blueprints https://github.com/googlesamples/android-architecture
+- Google play console https://play.google.com/apps/publish/
 
- - MVP Pattern (Microsoft) https://msdn.microsoft.com/en-us/library/ff649571.aspx
+- Build Your App from the Command Line https://developer.android.com/studio/build/building-cmdline.html
 
- - GUI Architectures (Martin Fowler) https://martinfowler.com/eaaDev/uiArchs.html
+- Configure Build Variants https://developer.android.com/studio/build/build-variants.html
 
- - MVC, MVP , MVVM (Realm) https://academy.realm.io/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/
+- App Privay Policy generator https://app-privacy-policy-generator.firebaseapp.com/
 
- - Ejemplo MVP
- https://github.com/emedinaa/android-mvp
- 
- - Clean Architecture https://docs.google.com/presentation/d/1Eg2V_0j0UO1V3gvYBMYomsMjS9cxD-p-CldPB68ZQxs/edit?usp=sharing
+- Developer Policy Center https://play.google.com/about/developer-content-policy/#!?modal_active=none
+
+- Google Play Developer API https://developers.google.com/android-publisher/
+
+
