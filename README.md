@@ -113,4 +113,6 @@ Categorización
 
 - Google Play Developer API https://developers.google.com/android-publisher/
 
+- Android Developers Blog https://android-developers.googleblog.com/2017/12/improving-app-security-and-performance.html
+
 
