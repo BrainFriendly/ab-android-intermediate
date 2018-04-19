@@ -10,3 +10,9 @@ Wireframe
 
 - Designing Effective Navigation https://developer.android.com/training/design-navigation/wireframing.html
 
+- Icon Finder https://www.iconfinder.com/
+
+- Android Inspired UI http://android.inspired-ui.com/
+
+- Material Design resources https://design.google/resources/
+
