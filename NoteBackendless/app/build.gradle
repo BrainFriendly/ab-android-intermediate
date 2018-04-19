@@ -43,18 +43,18 @@ dependencies {
 
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     //RETROFIT https://github.com/square/retrofit
     //compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile "com.squareup.retrofit2:retrofit:$rootProject.retrofit2"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit2"
 
     //GSON https://github.com/google/gson
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile "com.squareup.retrofit2:converter-gson:$rootProject.gson"
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.gson"
 
     //INTERCEPTOR
-    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3"
 
 
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
